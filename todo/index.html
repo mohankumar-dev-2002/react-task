@@ -1,0 +1,73 @@
+<!-- HTML for the to-do list page -->
+<html>
+
+    <head>
+        <title>List</title>
+    </head>
+
+    <body>
+        <style>
+            body {
+                font-size: 28px;
+                font-family: Verdana, Geneva, Tahoma, sans-serif;
+                margin: 40px;
+            }
+
+            li {
+                margin-top: 10px;
+            }
+
+            input[type=text] {
+                font-size: 24px;
+            }
+
+            button {
+                margin-top: 20px;
+                border-radius: 4px;
+                height: 30px;
+                width: 100px;
+                border-style: solid 0.1px;
+                font-size: 18px;
+            }
+
+            input[type=checkbox] {
+                float: right;
+                margin-right: 200px;
+                height: 20px;
+                width: 20px;
+            }
+        </style>
+        <h1> List</h1>
+        <form>
+            <label for="csv-input">Enter the items:</label><br>
+            <input type="text" id="csv-input" placeholder="" autocomplete="off" autofocus="on"><br>
+            <button type="button" onclick="addToDoItems()">Add Items</button>
+        </form>
+        <br>
+        <ul id="to-do-list"></ul>
+    </body>
+    <script>
+
+        function addToDoItems() {
+            const csvInput = document.getElementById("csv-input").value;
+            const toDoItems = csvInput.split(',');
+            if (csvInput === '') {
+                alert("You must enter something")
+            }
+            else {
+                for (const item of toDoItems) {
+                    const li = document.createElement("li");
+                    li.style.listStyleType = "none";
+                    // li.style.overflow = "hidden"; 
+                    const textNode = document.createTextNode(item);
+                    li.appendChild(textNode);
+                    document.getElementById("to-do-list").appendChild(li);
+                    const checkbox = document.createElement("input");
+                    checkbox.type = "checkbox";
+                    li.appendChild(checkbox);
+                }
+            }
+        }
+    </script>
+
+</html>
